@@ -1,0 +1,61 @@
+<!-- Outer button to open panel -->
+<button id="forge-trigger" class="panelbtn">
+    <span class="panelbtn-inner">
+        <img
+            alt="Form Forge"
+            class="panelbtn-icon"
+        >
+    </span>
+</button>
+
+<div id="forge-panel" class="forge-panel hidden">
+    <div class="forge-panel-header">
+        <button id="forge-trigger-back">➜</button>
+        <!-- <button class="applybtn">Apply</button> -->
+    </div>
+    <div class="forge-panel-body">
+        <div class="forge-field-indicator card">
+            <span id="forge-field-name">No field selected</span>
+        </div>
+        <div id="forge-panel-content" class="forge-panel-content"></div>
+    </div>
+
+    <div id="forge-toast" class="forge-toast"></div>
+
+    <!-- Label + value button row -->
+    <template id="forge-field-row-template">
+        <div class="forge-field-row">
+            <span class="forge-field-label"></span>
+            <button class="forge-field-btn"></button>
+        </div>
+    </template>
+
+    <!-- Single clickable value button (no label, for skills/languages/etc) -->
+    <template id="forge-btn-template">
+        <button class="forge-field-btn"></button>
+    </template>
+
+    <!-- Section wrapper -->
+    <template id="forge-section-template">
+        <div class="forge-section">
+            <div class="forge-section-title"></div>
+            <div class="forge-section-content"></div>
+        </div>
+    </template>
+
+    <!-- Entry card: for workHistory, education, addresses, identification -->
+    <template id="forge-entry-template">
+        <div class="forge-entry">
+            <div class="forge-entry-header"></div>
+            <div class="forge-entry-fields"></div>
+        </div>
+    </template>
+
+    <!-- Dropdown group: for coverLetters, faq -->
+    <template id="forge-select-template">
+        <div class="forge-select-group">
+            <select class="forge-select"></select>
+            <div class="forge-select-content"></div>
+        </div>
+    </template>
+</div>

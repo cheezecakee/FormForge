@@ -1,0 +1,602 @@
+<ff-header>
+    <span>Edit</span>
+    <button class="backbtn">Back</button>
+</ff-header>
+<div class="tab">
+    <button class="tabbtn" id="defaultOpen" data-tab="form-about">About</button>
+    <button class="tabbtn" data-tab="form-contact">Contact</button>
+    <button class="tabbtn" data-tab="form-addresses">Addresses</button>
+    <button class="tabbtn" data-tab="form-identification">Identification</button>
+    <button class="tabbtn" data-tab="form-workhistory">Work History</button>
+    <button class="tabbtn" data-tab="form-legal">Legal</button>
+    <button class="tabbtn" data-tab="form-faq">FAQ</button>
+    <button class="tabbtn" data-tab="form-links">Links</button>
+    <button class="tabbtn" data-tab="form-languages">Languages</button>
+    <button class="tabbtn" data-tab="form-salary">Salary</button>
+    <button class="tabbtn" data-tab="form-skills">Skills</button>
+    <button class="tabbtn" data-tab="form-coverletters">Cover Letters</button>
+    <button class="tabbtn" data-tab="form-education">Education</button>
+</div>
+
+<div id="form-about" class="tab-content">
+    <form>
+        <div class="card">
+            
+            <div class="field">
+                <label for="prefix">Prefix:</label>
+                <select id="prefix" name="prefix">
+                    <option value="">Select...</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label class="label" for="firstName">First Name</label>
+                    <input autocomplete="off" type="text" id="firstName" name="firstName" class="input">
+                </div>
+                <div class="field">
+                    <label class="label" for="middleName">Middle Name</label>
+                    <input autocomplete="off" type="text" id="middleName" name="middleName" class="input">
+
+                </div>
+                <div class="field">
+                    <label class="label" for="lastName">Last Name</label>
+                    <input autocomplete="off" type="text" id="lastName" name="lastName" class="input">
+                </div>
+            </div>
+
+            <label for="preferredName">Preferred Name:</label>
+            <input type="text" id="preferredName" name="preferredName">
+
+            <label for="birthDate">Birth Date:</label>
+            <input type="date" id="birthDate" name="birthDate">
+
+            <label for="citizenship">Citizenship:</label>
+            <select id="citizenship" name="citizenship">
+                <option value="">Select...</option>
+            </select>
+
+            <label for="nationality">Nationality:</label>
+            <select id="nationality" name="nationality">
+                <option value="">Select...</option>
+            </select>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="">Select...</option>
+            </select>
+
+            <label for="race">Race:</label>
+            <select id="race" name="race">
+                <option value="">Select...</option>
+            </select>
+
+            <label for="hispanicOrLatino">Hispanic or Latino:</label>
+            <select id="hispanicOrLatino" name="hispanicOrLatino">
+                <option value="">Prefer not to answer</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<div id="form-contact" class="tab-content">
+    <form>
+        <div class="card">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <div class="phone-group">
+                <div class="field country-code">
+                    <label for="countryCode">Code:</label>
+                    <select id="countryCode" name="countryCode">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="field phone-number">
+                <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+            </div>
+            <div class="field">
+                <label for="mobile">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="form-addresses" class="tab-content">
+    <form>
+        <div class="card address-block"  id="block-permanent">
+            <div class="form-header" id="header-permanent">
+                <span class="address-label">Permanent Address</span>
+                <span class="address-summary" id="summary-permanent"></span>
+            </div>
+
+            <div class="address-fields" id="fields-permanent">
+                <div class="field">
+                    <label for="permanent-line1">Line 1:</label>
+                    <input type="text" id="permanent-line1" name="permanent-line1">
+                </div>
+
+                <div class="field">
+                    <label for="permanent-line2">Line 2:</label>
+                    <input type="text" id="permanent-line2" name="permanent-line2">
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="permanent-city">City:</label>
+                        <input type="text" id="permanent-city" name="permanent-city">
+
+                    </div>
+                    <div class="field">
+                        <label for="permanent-state">State:</label>
+                        <input type="text" id="permanent-state" name="permanent-state">
+
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label for="permanent-country">Country:</label>
+                        <select id="permanent-country" name="permanent-country">
+                            <option value="">Select...</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="permanent-zipCode">Zip Code:</label>
+                        <input type="text" id="permanent-zipCode" name="permanent-zipCode">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card address-block" id="block-current">
+            <div class="form-header" id="header-current">
+                <span class="address-label">Current Address</span>
+
+                <span class="address-summary" id="summary-current"></span>
+                <label class="same-as-label">
+                    <input type="checkbox" id="sameAsPermanent">
+                    Same as permanent
+                </label>
+            </div>
+            <div class="address-fields" id="fields-current">
+                <div class="field">
+                    <label for="current-line1">Line 1:</label>
+                    <input type="text" id="current-line1" name="current-line1">
+                </div>
+
+                <div class="field">
+                    <label for="current-line2">Line 2:</label>
+                    <input type="text" id="current-line2" name="current-line2">
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                <label for="current-city">City:</label>
+                <input type="text" id="current-city" name="current-city">
+                    </div>
+
+                    <div class="field">
+                <label for="current-state">State:</label>
+                <input type="text" id="current-state" name="current-state">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label for="current-country">Country:</label>
+                        <select id="current-country" name="current-country">
+                            <option value="">Select...</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="current-zipCode">Zip Code:</label>
+                        <input type="text" id="current-zipCode" name="current-zipCode">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="form-identification" class="tab-content">
+    <form>
+        <div class="display-list" id="id-list"></div>
+
+        <button class="add-btn" type="button" id="add-id">Add</button>
+
+        <template id="id-template">
+            <div class ="card id-block" data-item>
+                <div class="form-row">
+                    <div class="field">
+                        <label>Type</label>
+                        <select name="type">
+                            <option value="">Select type...</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Country</label>
+                        <select name="country">
+                            <option value="">Country (optional)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>ID Number</label>
+                        <input type="text" name="value" placeholder="ID number">
+                    </div>
+                    <div class="field">
+                        <label>Expiry Date</label>
+                        <input type="date" name="expiry">
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="text" name="customType" placeholder="Custom type">
+                </div>
+
+               <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+<div id="form-workhistory" class="tab-content">
+    <form>
+        <div class="display-list" id="work-list"></div>
+
+        <button class="add-btn" type="button" id="add-work">Add</button>
+        <template id="work-template">
+            <div class="card" data-item>
+                <div class="form-row">
+                    <div class="field">
+                        <label>Title</label>
+                        <input type="text" name="title" placeholder="Title">
+                    </div>
+                    <div class="field">
+                        <label>Company</label>
+                        <input type="text" name="company" placeholder="Company">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>Location</label>
+                        <input type="text" name="location" placeholder="Location">
+                    </div>
+                    <div class="field">
+                        <label>Start Date</label>
+                        <input type="date" name="startDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>End Date</label>
+                        <input type="date" name="endDate">
+                    </div>
+                    <label class="same-as-label">
+                        <input type="checkbox" name="current">
+                        Currently working here
+                    </label>
+                </div>
+
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Description"></textarea>
+                </div>
+
+                <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+<div id="form-legal" class="tab-content">
+    <form>
+        <div class="card">
+            <div class="form-header">
+                Employment Eligibility
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="workAuthorized">Work Authorized:</label>
+                    <select id="workAuthorized" name="workAuthorized">
+                        <option value="">Prefer not to answer</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="field">
+
+                    <label for="requireSponsorship">Requires Sponsorship:</label>
+                    <select id="requireSponsorship" name="requireSponsorship">
+                        <option value="">Prefer not to answer</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-header">
+                Equal Opportunity Information
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="disability">Disability:</label>
+                    <select id="disability" name="disability">
+                        <option value="">Prefer not to answer</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="veteran">Veteran:</label>
+                    <select id="veteran" name="veteran">
+                        <option value="">Prefer not to answer</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="criminal">Criminal Record:</label>
+                    <select id="criminal" name="criminal">
+                        <option value="">Prefer not to answer</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="form-faq" class="tab-content">
+    <form>
+        <div class="display-list" id="faq-list"></div>
+
+        <button class="add-btn" type="button" id="add-faq">Add</button>
+
+        <template id="faq-template">
+            <div class="card" data-item>
+                <div class="field">
+                    
+                    <label>Question</label>
+                    <input type="text" name="question" placeholder="Question">
+                </div>
+                <div class="field">
+                    <label>Answer</label>
+                    
+                    <textarea name="answer" placeholder="Answer"></textarea>
+                </div>
+                <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+
+<div id="form-links" class="tab-content">
+    <form>
+        <div class="card">
+            <div class="form-row">
+                <div class="field">
+                    <label for="linkedIn">LinkedIn:</label>
+                    <input type="url" id="linkedIn" name="linkedIn">
+                </div>
+                <div class="field">
+                    <label for="github">GitHub:</label>
+                    <input type="url" id="github" name="github">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="x">X:</label>
+                    <input type="url" id="x" name="x">
+                </div>
+                <div class="field">
+                    <label for="instagram">Instagram:</label>
+                    <input type="url" id="instagram" name="instagram">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="portfolio">Portfolio:</label>
+                    <input type="url" id="portfolio" name="portfolio">
+                </div>
+                <div class="field">
+                    <label for="website">Website:</label>
+                    <input type="url" id="website" name="website">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="blog">Blog:</label>
+                    <input type="url" id="blog" name="blog">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="form-languages" class="tab-content">
+    <form>
+        <div class="display-list" id="language-list"></div>
+        <button class="add-btn" type="button" id="add-language">Add</button>
+        <template id="language-template">
+            <div class="card" data-item>
+                <div class="form-row">
+                    <div class="field">
+                        <label>Language</label>
+                        <input type="text" name="language" placeholder="Language">
+                    </div>
+                    <div class="field">
+                        <label>Proficiency</label>
+                        <select name="proficiency">
+                            <option value="">Select proficiency...</option>
+                            <option value="basic">Basic</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="fluent">Fluent</option>
+                            <option value="native">Native</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+
+<div id="form-salary" class="tab-content">
+    <form>
+        <div class="card">
+            <div class="form-row">
+                <div class="field">
+                    <label for="salary-min">Minimum:</label>
+                    <input type="number" id="salary-min" name="salary-min">
+                </div>
+                <div class="field">
+                    <label for="salary-max">Maximum:</label>
+                    <input type="number" id="salary-max" name="salary-max">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="field">
+                    <label for="salary-currency">Currency:</label>
+                    <input type="text" id="salary-currency" name="salary-currency">
+                </div>
+                <div class="field">
+                    <label for="salary-period">Period:</label>
+                    <select id="salary-period" name="salary-period">
+                        <option value="">Select...</option>
+                        <option value="annual">Annual</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="hourly">Hourly</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div id="form-skills" class="tab-content">
+    <form>
+        <div class="display-list" id="skill-list"></div>
+        <button class="add-btn" type="button" id="add-skill">Add</button>
+        <template id="skill-template">
+            <div class="card" data-item>
+                <div class="form-row align-end">
+                    <div class="field">
+                        <label>Skill</label>
+                        <input type="text" name="name" placeholder="Skill">
+                        
+                    </div>
+                        <button type="button" class="remove-btn remove-item">Remove</button>
+                </div>
+            </div>
+        </template>
+    </form>
+</div>
+
+<div id="form-coverletters" class="tab-content">
+    <form>
+        <div id="coverletter-list"></div>
+        <button class="add-btn" type="button" id="add-coverletter">Add</button>
+        <template id="coverletter-template">
+            <div class="card" data-item>
+                <div class="field">
+                    <label>Label</label>
+                    <input type="text" name="label" placeholder="Label (e.g. General, Startup)">
+                </div>
+                <div class="field">
+                    <textarea name="body" placeholder="Cover letter body"></textarea>
+                </div>
+
+                <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+
+<div id="form-education" class="tab-content">
+    <form>
+        <div class="display-list" id="education-list"></div>
+        <button class="add-btn" type="button" id="add-education">Add</button>
+        <template id="education-template">
+            <div class="card" data-item>
+                <div class="form-row">
+                    <div class="field">
+                        <label>Level</label>
+                        <select name="level">
+                            <option value="">Select level...</option>
+                            <option value="high-school">High School</option>
+                            <option value="associate">Associate</option>
+                            <option value="bachelor">Bachelor</option>
+                            <option value="master">Master</option>
+                            <option value="doctorate">Doctorate</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Institution</label>
+                        <input type="text" name="institution" placeholder="Institution">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>Location</label>
+                        <select name="location">
+                            <option value="">Country (optional)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Start Date</label>
+                        <input type="date" name="startDate">
+                    </div>
+                    <div class="field">
+                        <label>End Date</label>
+                        <input type="date" name="endDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label>Degree</label>
+                        <input type="text" name="degree" placeholder="Degree">
+                    </div>
+                    <div class="field">
+                        <label>Field of Study</label>
+                        <input type="text" name="fieldOfStudy" placeholder="Field of Study">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label>GPA</label>
+                        <input type="text" name="gpa" placeholder="GPA">
+                    </div>
+                    <div class="field">
+                        <label>Honors</label>
+                        <input type="text" name="honors" placeholder="Honors">
+                    </div>
+                </div>
+
+                <button type="button" class="remove-btn remove-item">Remove</button>
+            </div>
+        </template>
+    </form>
+</div>
+<ff-footer>
+    <button class="savebtn">Save</button>
+</ff-footer>
