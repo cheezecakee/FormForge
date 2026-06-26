@@ -59,8 +59,8 @@ Form Forge does not require an account or login.
 
 If you find a bug, have a suggestion, or want to request support for a website:
 
-- Report an issue: [link]
-- Request website support: [link]
+- Report an issue: [link](https://github.com/cheezecakee/FormForge/issues/new?template=bug_report.md)
+<!-- - Request website support: [link] -->
 
 ## Changelog
 
