@@ -53,6 +53,7 @@ Form Forge does not store your data on external servers.
 All profile information is stored locally in your browser and remains on your device.
 
 Form Forge does not require an account or login.
+- [Privacy Policy](privacy-policy.md)
 
 ## Support
 
@@ -63,7 +64,7 @@ If you find a bug, have a suggestion, or want to request support for a website:
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md)
+See [CHANGELOG](CHANGELOG.md)
 
 ## License
 
