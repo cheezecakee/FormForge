@@ -1,7 +1,7 @@
 {
     "name": "Form Forge",
-    "description": "Easy job application form autofiller",
-    "version": "1.0",
+    "description": "Easy job application form filler",
+    "version": "1.0.0",
     "manifest_version": 3,
     "commands": {
         "_execute_action": {
@@ -33,15 +33,16 @@
         "tabs",
         "activeTab",
         "scripting",
-        "storage",
-        "sidePanel"
+        "storage"
     ],
     "web_accessible_resources": [
         {
             "resources": [
                 "panel/*",
                 "global.css",
-                "logo/*"
+                "logo/*",
+                "profile/*",
+                "assets/*"
             ],
             "matches": [
                 "<all_urls>"
@@ -49,18 +50,22 @@
         }
     ],
     "host_permissions": [
+        "https://*.greenhouse.io/*",
         "https://*.workday.com/*",
-        "https://*.linkedin.com/*",
-        "https://*.greenhouse.io/*"
+        "https://*.lever.co/*",
+        "https://www.linkedin.com/jobs/*",
+        "https://*.bamboohr.com/*",
+        "https://*.ashbyhq.com/*"
     ],
     "content_scripts": [
         {
             "matches": [
-                "https://*.workday.com/*",
-                "https://*.linkedin.com/*",
                 "https://*.greenhouse.io/*",
+                "https://*.workday.com/*",
+                "https://*.lever.co/*",
+                "https://www.linkedin.com/jobs/*",
                 "https://*.bamboohr.com/*",
-                "https://*.fullstack.com/*"
+                "https://*.ashbyhq.com/*"
             ],
             "js": [
                 "dist/content-script.js"
