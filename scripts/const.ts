@@ -1,9 +1,10 @@
 export const Websites = [
-    "workday.com",
-    "linkedin.com/jobs",
     "greenhouse.io",
+    "workday.com",
+    "lever.co",
+    "linkedin.com/jobs",
     "bamboohr.com",
-    "fullstack.com"
+    "ashbyhq.com"
 ];
 
 export const prefix = [
