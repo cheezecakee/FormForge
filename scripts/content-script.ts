@@ -9,20 +9,25 @@ const findForm = (): HTMLFormElement | null =>
     || null;
 
 const isDropdown = (element: HTMLInputElement): boolean => {
-    const hasReactSelect = element.closest('[class*="select"]') !== null;
+    // Greenhouse detection, phone code dropdown and input share the same container
+    if (element.closest('.iti') !== null) {
+        return false;
+    }
+
+    if (element.id?.toLowerCase().includes('phone')) {
+        return false;
+    }
+
+    if (element.closest('.select') !== null) {
+        return true;
+    }
 
     const hasDropdownAttrs =
         element.getAttribute('aria-haspopup') === 'true' ||
         element.getAttribute('role') === 'combobox' ||
-        element.getAttribute('aria-autocomplete') === 'list' ||
-        element.getAttribute('aria-expanded') !== null;
+        element.getAttribute('aria-autocomplete') === 'list';
 
-    const hasDropdownClass =
-        element.classList.contains('select__input') ||
-        element.closest('.select__control') !== null ||
-        element.closest('[class*="dropdown"]') !== null;
-
-    return hasReactSelect || hasDropdownAttrs || hasDropdownClass;
+    return hasDropdownAttrs;
 };
 
 const isFieldValid = (element: EventTarget | null): element is HTMLInputElement | HTMLTextAreaElement =>
