@@ -39,7 +39,7 @@ export const saveForm = async (): Promise<void> => {
         coverLetters: getCoverLetters(),
     };
     await SaveProfile(profile);
-    console.log('Profile saved:', profile);
+    // console.log('Profile saved:', profile);
 };
 
 export const initEdit = async (): Promise<void> => {

@@ -11,4 +11,8 @@ export const routes = {
         template: "../profile/help.html",
         title: "Help",
     },
+    "sites": {
+        template: "../profile/sites.html",
+        title: "Manage Sites",
+    },
 }

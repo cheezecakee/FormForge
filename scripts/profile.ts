@@ -2,6 +2,7 @@ import { routes } from './routes.ts';
 import { saveForm, initEdit } from './form.ts';
 import { initView } from './view.ts';
 import { initHelp } from './help.ts';
+import { initSites } from './sites.ts';
 
 import { ClearProfile } from './storage.ts';
 
@@ -19,6 +20,7 @@ const locationHandler = async () => {
     if (location === '/') await initView();
     if (location === 'edit') await initEdit();
     if (location === 'help') await initHelp();
+    if (location === 'sites') await initSites();
 
     const tablinks = document.querySelectorAll(".tabbtn");
     tablinks.forEach(btn => {
@@ -29,7 +31,8 @@ const locationHandler = async () => {
             }
             const tabs = document.getElementsByClassName("tabbtn");
             for (let i = 0; i < tabs.length; i++) {
-                tabs[i].className = tabs[i].className.replace(" active", "");
+                const tab = tabs[i];
+                if (tab) tab.className = tab.className.replace(" active", "");
             }
             const formName = (evt.currentTarget as HTMLElement).dataset.tab;
             document.getElementById(formName!)!.style.display = "block";
@@ -47,24 +50,9 @@ const locationHandler = async () => {
 document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains("editbtn")) window.location.hash = "edit";
-    if (target.classList.contains("backbtn")) window.location.hash = "#";
     if (target.classList.contains("helpbtn")) window.location.hash = "help";
-});
-
-document.addEventListener("click", (e) => {
-    const target = e.target as HTMLElement;
-
-    if (target.classList.contains("editbtn")) {
-        window.location.hash = "edit";
-    }
-
-    if (target.classList.contains("helpbtn")) {
-        window.location.hash = "help";
-    }
-
-    if (target.classList.contains("backbtn")) {
-        window.location.hash = "#";
-    }
+    if (target.classList.contains("sitesbtn")) window.location.hash = "sites";
+    if (target.classList.contains("backbtn")) window.location.hash = "#";
 
     if (target.classList.contains("clearbtn")) {
         const confirmed = confirm('Are you sure you want to clear your profile? This cannot be undone.');
@@ -80,5 +68,3 @@ document.addEventListener("click", (e) => {
 
 window.addEventListener("hashchange", locationHandler);
 locationHandler();
-
-
