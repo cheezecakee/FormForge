@@ -7,7 +7,6 @@
     <div class="help-layout">
 
     <div class="help-nav">
-
         <div class="help-step" data-target="welcome">
             <div class="help-dot"></div>
             <span>Welcome</span>
@@ -36,6 +35,13 @@
 
         <div class="help-line"></div>
 
+        <div class="help-step" data-target="manage-sites">
+            <div class="help-dot"></div>
+            <span>Managing Sites</span>
+        </div>
+
+        <div class="help-line"></div>
+
         <div class="help-step" data-target="applying">
             <div class="help-dot"></div>
             <span>Applying to Jobs</span>
@@ -47,34 +53,28 @@
             <div class="help-dot"></div>
             <span>Tips & Support</span>
         </div>
-
     </div>
-
-
-        
         <div class="help-content">
             <section class="card" id="welcome">
                 <div class="form-header">
                     Welcome to Forge
                 </div>
-                <div class="help-row">
-                    <div class="help-image-holder">
-                        <img class="help-image" src="../assets/help/welcome.png">
-                    </div>
-                    <div class="help-steps">
-                        <div class="help-step-item">
-                            <span class="help-number">1</span>
+                <div class="help-image-holder">
+                    <img class="help-image" src="../assets/help/getting_started.png">
+                </div>
+                <div class="help-steps">
+                    <div class="help-step-item">
+                        <span class="help-number">1</span>
 
-                            <div>
-                                Forge is available from your browser's extension menu.
-                            </div>
+                        <div>
+                            Forge is available from your browser's extension menu.
                         </div>
-                        <div class="help-step-item">
-                            <span class="help-number">2</span>
+                    </div>
+                    <div class="help-step-item">
+                        <span class="help-number">2</span>
 
-                            <div>
-                                Click Forge to open the popup.
-                            </div>
+                        <div>
+                            Click Forge to open the popup.
                         </div>
                     </div>
                 </div>
@@ -88,44 +88,60 @@
 
                 <p>
                     The popup is your control center. Use it to manage your profile,
-                    access help, and check whether the current website is supported.
+                    access help.
+                </p>
+
+                <div class="help-image-holder">
+                    <img class="help-image" src="../assets/help/popup.png">
+                </div>
+
+                <div class="help-steps">
+                    <div class="help-step-item">
+                        <span class="help-number">1</span>
+                        <div>
+                            Indicates whether Form Forge is active on that page.
+                        </div>
+                    </div>
+
+                    <div class="help-step-item">
+                        <span class="help-number">2</span>
+
+                        <div>
+                            Open your profile to view or update your information.
+                        </div>
+                    </div>
+
+                    <div class="help-step-item">
+                        <span class="help-number">3</span>
+
+                        <div>
+                            Add the current site to your supported sites list.
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    When visiting a supported job site, the indicator turns green and
+                    the button changes to allow you to remove the site.
                 </p>
 
                 <div class="help-row">
-
                     <div class="help-image-holder">
-                        <img class="help-image" src="../assets/help/popup.png">
+                        <img class="help-image" src="../assets/help/popup_2.png">
                     </div>
 
                     <div class="help-steps">
-
                         <div class="help-step-item">
                             <span class="help-number">1</span>
-
-                            <div>
-                                Indicates whether the current website is supported.
-                            </div>
+                            <div>Green indicator confirms the current site is active.</div>
                         </div>
-
                         <div class="help-step-item">
                             <span class="help-number">2</span>
-
-                            <div>
-                                Open your profile to view or update your information.
-                            </div>
+                            <div>Remove the current site from your active sites list.</div>
                         </div>
-
-                        <div class="help-step-item">
-                            <span class="help-number">3</span>
-
-                            <div>
-                                Open the help guide at any time.
-                            </div>
-                        </div>
-
                     </div>
-
                 </div>
+
 
             </section>
 
@@ -140,38 +156,29 @@
                 </p>
 
                 <div class="help-image-holder">
-                    <img class="help-image" src="../assets/help/view_profile.png">
+                    <img class="help-image" src="../assets/help/managing_profile.png">
                 </div>
 
-                <p>
-                    Your saved information is displayed here in read-only mode.
-                    Use the controls above to manage your profile.
-                </p>
-
                 <div class="help-steps">
-
                     <div class="help-step-item">
                         <span class="help-number">1</span>
-
-                        <div>
-                            Edit your profile information.
-                        </div>
+                        <div>Your saved profile information displayed in read-only mode.</div>
                     </div>
-
                     <div class="help-step-item">
                         <span class="help-number">2</span>
-
-                        <div>
-                            Clear your saved profile data.
-                        </div>
+                        <div>Edit your profile information.</div>
                     </div>
-
                     <div class="help-step-item">
                         <span class="help-number">3</span>
-
-                        <div>
-                            Open the Forge help guide.
-                        </div>
+                        <div>Manage your supported job sites.</div>
+                    </div>
+                    <div class="help-step-item">
+                        <span class="help-number">4</span>
+                        <div>Open the Forge help guide.</div>
+                    </div>
+                    <div class="help-step-item">
+                        <span class="help-number">5</span>
+                        <div>Clear your saved profile data.</div>
                     </div>
                 </div>
             </section>
@@ -190,35 +197,22 @@
                 </p>
 
                 <div class="help-image-holder">
-                    <img class="help-image" src="../assets/help/edit_1.png">
+                    <img class="help-image" src="../assets/help/creating_profile.png">
                 </div>
 
                 <div class="help-steps">
-
                     <div class="help-step-item">
                         <span class="help-number">1</span>
-
-                        <div>
-                            Return to your profile without editing.
-                        </div>
+                        <div>Current section.</div>
                     </div>
-
                     <div class="help-step-item">
                         <span class="help-number">2</span>
-
-                        <div>
-                            Switch between profile sections.
-                        </div>
+                        <div>Save your profile changes.</div>
                     </div>
-
                     <div class="help-step-item">
                         <span class="help-number">3</span>
-
-                        <div>
-                            Save your profile changes.
-                        </div>
+                        <div>Return to your profile.</div>
                     </div>
-
                 </div>
 
                 <p>
@@ -227,7 +221,7 @@
                 </p>
 
                 <div class="help-image-holder">
-                    <img class="help-image" src="../assets/help/edit_2.png">
+                    <img class="help-image" src="../assets/help/creating_profile_2.png">
                 </div>
 
                 <div class="help-steps">
@@ -252,18 +246,58 @@
 
             </section>
 
+            <section class="card" id="manage-sites">
+                <div class="form-header">
+                    Managing Sites
+                </div>
+
+                <p>
+                    Form Forge automatically activates on a set of default job sites.
+                    You can also add your own custom sites so Forge activates wherever
+                    you apply.
+                </p>
+
+                <div class="help-image-holder">
+                    <img class="help-image" src="../assets/help/managing_sites.png">
+                </div>
+
+                <div class="help-steps">
+                    <div class="help-step-item">
+                        <span class="help-number">1</span>
+                        <div>
+                            Add a custom site by entering its domain and clicking Add.
+                        </div>
+                    </div>
+                    <div class="help-step-item">
+                        <span class="help-number">2</span>
+                        <div>
+                            Remove a custom site you no longer need.
+                        </div>
+                    </div>
+                </div>
+
+                <p class="help-notice">
+                    Default sites are built in and cannot be removed. Custom sites
+                    you add here will also appear in the popup when you visit them.
+                </p>
+            </section>
+
             <section class="card" id="applying">
                 <div class="form-header">
                     Applying to Jobs
                 </div>
 
                 <p>
-                    When visiting a supported job website, Forge can help fill application
+                    When visiting a <a href="#supported-platforms">supported</a> job website,Form Forge can help fill application
                     fields using the information saved in your profile.
+                </p>
+                <p>
+                    Form Forge supports a growing number of application platforms. Features may
+                    vary between websites depending on how the application form is built.
                 </p>
 
                 <div class="help-image-holder">
-                    <img class="help-image" src="../assets/help/panel_trigger.png">
+                    <img class="help-image" src="../assets/help/applying_jobs.png">
                 </div>
 
                 <div class="help-steps">
@@ -279,13 +313,13 @@
                 </div>
 
                 <p>
-                    The panel can also open when interacting with a supported input field.
+                    The panel can also open when interacting with a <a href="#supported-platforms">supported</a> input field.
                     Selecting a field allows Forge to know where information should be
                     inserted.
                 </p>
 
                 <div class="help-image-holder">
-                    <img class="help-image" src="../assets/help/panel.png">
+                    <img class="help-image" src="../assets/help/applying_jobs_2.png">
                 </div>
 
                 <div class="help-steps">
@@ -294,31 +328,13 @@
                         <span class="help-number">1</span>
 
                         <div>
-                            Select a supported application field. Forge remembers this
-                            selection while filling the form.
-                        </div>
-                    </div>
-
-                    <div class="help-step-item">
-                        <span class="help-number">2</span>
-
-                        <div>
                             Choose information from the panel to fill the selected field.
                             If no field is selected, the information is copied instead.
                         </div>
                     </div>
 
                     <div class="help-step-item">
-                        <span class="help-number">3</span>
-
-                        <div>
-                            Notifications show whether the action succeeded, failed, or
-                            copied the information instead.
-                        </div>
-                    </div>
-
-                    <div class="help-step-item">
-                        <span class="help-number">4</span>
+                        <span class="help-number">2</span>
 
                         <div>
                             Shows the currently selected field or indicates that no field
@@ -327,7 +343,7 @@
                     </div>
 
                     <div class="help-step-item">
-                        <span class="help-number">5</span>
+                        <span class="help-number">3</span>
 
                         <div>
                             Close the Forge panel.
@@ -341,11 +357,10 @@
                     selected before inserting.
                 </p>
 
-
                 <div class="help-row">
 
                     <div class="help-image-holder">
-                        <img class="help-image" src="../assets/help/panel_2.png">
+                        <img class="help-image" src="../assets/help/applying_jobs_3.png">
                     </div>
 
                     <div class="help-steps">
@@ -378,34 +393,93 @@
                 </div>
 
                 <p>
-                    Tips for getting the best results with Forge.
+                    Helpful information for getting the best results with Form Forge.
+                </p>
+                
+                <div class="form-subheader" id="supported-platforms">
+                    Supported Platforms
+                </div>
+
+                <p>
+                    Form Forge automatically activates on supported job application websites,
+                    including:
                 </p>
 
                 <ul>
-                    <li>
-                        Keep your profile updated so Forge has the latest information available.
-                    </li>
-
-                    <li>
-                        Select the relevant information before copying or inserting it into an application.
-                    </li>
-
-                    <li>
-                        If a field cannot be filled automatically, Forge will copy the information instead.
-                    </li>
+                    <li>Greenhouse</li>
+                    <li>LinkedIn Jobs</li>
+                    <li>Workday</li>
+                    <li>BambooHR</li>
+                    <li>FullStack</li>
                 </ul>
 
-                <hr>
+                <p class="help-notice">
+                    Greenhouse applications currently support automatic population of text
+                    fields, text areas, and dropdown selections.
+                    <br><br>
+                    Features may vary between websites depending on how the application form
+                    is built.
+                </p>
 
-                <div class="form-header">
+                <div class="form-subheader">
+                    Some Fields Require Manual Completion
+                </div>
+
+                <p>
+                    Certain application fields are intentionally left for applicants to
+                    review and complete themselves.
+                </p>
+
+                <ul>
+                    <li>Privacy acknowledgements</li>
+                    <li>Consent checkboxes</li>
+                    <li>Terms and conditions</li>
+                    <li>CAPTCHA challenges</li>
+                    <li>Security verification prompts</li>
+                </ul>
+
+                <div class="form-subheader">
+                    Review Before Submitting
+                </div>
+
+                <p>
+                    Forge is designed to reduce repetitive data entry during job
+                    applications, but you should always review your application before
+                    submitting it.
+                </p>
+
+                <ul>
+                    <li>Verify all information entered on your behalf.</li>
+                    <li>Review privacy notices and consent requests.</li>
+                    <li>Check employer-specific questions and responses.</li>
+                    <li>Confirm the company and position you are applying for.</li>
+                </ul>
+
+                <p>
+                    You remain responsible for the final contents of your application and
+                    the decision to submit it.
+                </p>
+
+                <div class="form-subheader">
+                    Websites Change Frequently
+                </div>
+
+                <p>
+                    Supported job platforms are regularly updated by their providers.
+                    While Forge is actively maintained, website changes may temporarily
+                    affect autofill functionality until compatibility updates are released.
+                </p>
+
+                <div class="form-subheader">
                     Support
                 </div>
 
                 <div class="help-links">
-                    GitHub<br>
-                    Report an Issue<br>
-                    Changelog
+                    <a href="https://github.com/cheezecakee/FormForge" target="_blank">GitHub</a><br>
+                    <a href="https://github.com/cheezecakee/FormForge/issues/new?template=bug_report.md" target="_blank">Report an Issue</a><br>
+                    <a href="https://github.com/cheezecakee/FormForge/blob/main/CHANGELOG.md" target="_blank">Changelog</a>
                 </div>
+
             </section>
         </div>
     </div>

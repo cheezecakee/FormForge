@@ -9,6 +9,27 @@ ff-profile span {
     font-weight: bold;
 }
 
+.profile-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 1rem;
+
+    box-shadow:
+        1px 0 rgba(255,255,255,.8),
+       -1px 0 rgba(0,0,0,.08);
+}
+
+.profile-nav button {
+    background: none;
+    box-shadow: none;
+    transition: all 0.2s;
+}
+
 #profile-view {
     display: flex;
     flex-direction: column;
@@ -80,5 +101,4 @@ ff-profile span {
     border-radius: var(--radius-sm);
     box-shadow:  5px 5px 8px #cecece,
         5px 5px 8px rgba(0, 0, 0, 0.1);
-             /* -5px -5px 8px #f2f2f2; */
 }
