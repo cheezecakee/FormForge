@@ -2,28 +2,47 @@ import { LoadProfile } from './storage.ts';
 import { renderPanel } from './panel/render.ts';
 import { saveField, fillField, getSavedField } from './panel/fill.ts';
 
-// ─── Field Helpers ────────────────────────────────────────────────
-
 const findForm = (): HTMLFormElement | null =>
     document.getElementById('application-form') as HTMLFormElement
     || document.querySelector('form[data-testid*="application"]')
     || document.querySelector('form[class*="application"]')
     || null;
 
-const isDropdown = (element: HTMLInputElement): boolean =>
-    element.getAttribute('aria-haspopup') === 'true'
-    || element.getAttribute('role') === 'combobox'
-    || element.getAttribute('aria-autocomplete') === 'list';
+const isDropdown = (element: HTMLInputElement): boolean => {
+    const hasReactSelect = element.closest('[class*="select"]') !== null;
+
+    const hasDropdownAttrs =
+        element.getAttribute('aria-haspopup') === 'true' ||
+        element.getAttribute('role') === 'combobox' ||
+        element.getAttribute('aria-autocomplete') === 'list' ||
+        element.getAttribute('aria-expanded') !== null;
+
+    const hasDropdownClass =
+        element.classList.contains('select__input') ||
+        element.closest('.select__control') !== null ||
+        element.closest('[class*="dropdown"]') !== null;
+
+    return hasReactSelect || hasDropdownAttrs || hasDropdownClass;
+};
 
 const isFieldValid = (element: EventTarget | null): element is HTMLInputElement | HTMLTextAreaElement =>
     element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement;
 
-const getFieldName = (field: HTMLInputElement | HTMLTextAreaElement): string =>
-    field.getAttribute('aria-label')
-    || field.getAttribute('placeholder')
-    || field.getAttribute('name')
-    || field.getAttribute('id')
-    || 'Unknown field';
+const getFieldName = (field: HTMLInputElement | HTMLTextAreaElement): string => {
+    const ariaLabel = field.getAttribute('aria-label');
+    if (ariaLabel) return ariaLabel;
+
+    const labelledBy = field.getAttribute('aria-labelledby');
+    if (labelledBy) {
+        const labelEl = document.getElementById(labelledBy.split(' ')[0] ?? '');
+        if (labelEl?.textContent) return labelEl.textContent.trim();
+    }
+
+    return field.getAttribute('placeholder')
+        || field.getAttribute('name')
+        || field.getAttribute('id')
+        || 'Unknown field';
+};
 
 let panel: Element | null = null;
 let panelbtn: Element | null = null;
@@ -84,8 +103,11 @@ chrome.runtime.sendMessage({ action: 'job-site-detected' });
     form?.addEventListener('focusin', (event) => {
         if (!isFieldValid(event.target)) return;
         const field = event.target;
-        if (getSavedField() === field) return; // already saved, ignore re-focus
-        saveField(field, isDropdown(field as HTMLInputElement) ? 'dropdown' : 'input');
+        if (getSavedField() === field) return;
+
+        const isDropdownField = isDropdown(field as HTMLInputElement);
+
+        saveField(field, isDropdownField ? 'dropdown' : 'input');
         if (indicator) indicator.textContent = `Selected: ${getFieldName(field)}`;
         if (!isPanelOpen) openPanel();
     });
@@ -94,8 +116,6 @@ chrome.runtime.sendMessage({ action: 'job-site-detected' });
         if (!isFieldValid(event.target)) return;
     });
 })();
-
-// ─── Panel UI ─────────────────────────────────────────────────────
 
 const openPanel = (): void => {
     if (!panel || !panelbtn) return;

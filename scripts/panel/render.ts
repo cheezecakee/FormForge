@@ -24,10 +24,6 @@ const createEntry = (shadow: ShadowRoot, header: string): { entry: HTMLElement, 
     return { entry, fields };
 };
 
-// Label + value button row — used for named fields (about, contact, address, etc.)
-// const formatDisplayValue = (value: string): string =>
-//     value.replace(/^https?:\/\//, '');
-
 const createFieldRow = (shadow: ShadowRoot, label: string, value: string, onClick: OnClick, displayValue?: string): HTMLElement => {
     const row = cloneTemplate(shadow, 'forge-field-row-template');
 

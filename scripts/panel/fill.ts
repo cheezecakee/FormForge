@@ -24,7 +24,6 @@ export const fillField = (
     indicator: Element | null,
     onToast: (msg: string, type: 'success' | 'error' | 'info') => void
 ): void => {
-    // No field selected — just copy to clipboard
     if (!savedField) {
         navigator.clipboard.writeText(value)
             .then(() => onToast('Copied to clipboard!', 'info'))
@@ -32,7 +31,6 @@ export const fillField = (
         return;
     }
 
-    // Field was selected but is no longer in the DOM
     if (!document.contains(savedField)) {
         clearSavedField(indicator);
         onToast('Field no longer exists', 'error');
@@ -66,67 +64,246 @@ const fillDropdown = (
     onToast: (msg: string, type: 'success' | 'error' | 'info') => void
 ): void => {
     if (!savedField) return;
+
     const field = savedField as HTMLInputElement;
 
-    console.log('[fill] attempting dropdown fill:', value);
+    // console.log('fillDropdown called with value:', value);
+    // console.log('field:', field);
 
-    // React Select: set value via native setter to trigger React's onChange
+    // Find the React Select container
+    const selectContainer = field.closest('.select');
+    if (!selectContainer) {
+        onToast('Could not find select container', 'error');
+        return;
+    }
+
+    // Use onMouseUp to toggle menuIsOpen
+    const control = selectContainer.querySelector('.select__control');
+    if (control) {
+        const mouseUpEvent = new MouseEvent('mouseup', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+        });
+        control.dispatchEvent(mouseUpEvent);
+    }
+
+    // Click the field to ensure it opens
     field.focus();
     field.click();
 
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
-    nativeInputValueSetter?.call(field, value);
-    field.dispatchEvent(new Event('input', { bubbles: true }));
+    // console.log('Dropdown should be open, waiting for options...');
 
-    console.log('[fill] typed value, waiting for options to filter...');
-
-    let resolved = false;
-
-    // Wait for React Select to filter options after input event
     setTimeout(() => {
-        const listbox = document.querySelector('[role="listbox"]');
-        console.log('[fill] listbox found:', !!listbox);
+        // Find all options in the menu
+        const menu = selectContainer.querySelector('.select__menu');
+        if (!menu) {
+            // console.log('Menu not found');
+            // Try typing approach as fallback
+            typeAndSelect(field, value, indicator, onToast);
+            return;
+        }
 
-        if (listbox) {
-            const options = Array.from(listbox.querySelectorAll('[role="option"]'));
-            console.log('[fill] filtered options:', options.map(o => o.textContent?.trim()));
+        const options = menu.querySelectorAll('[role="option"]');
+        // console.log('options found:', options.length);
+        // console.log('options:', Array.from(options).map(o => o.textContent?.trim()));
 
-            const needle = value.toLowerCase();
-            const match = options.find(opt => {
-                const text = opt.textContent?.trim().toLowerCase() ?? '';
-                return text === needle || text.startsWith(needle);
-            });
+        // Find the best match
+        let match = findMatchingOption(Array.from(options), value);
+        // console.log('match found:', match);
 
-            if (match) {
-                console.log('[fill] match found, pressing Enter');
-                field.dispatchEvent(new KeyboardEvent('keydown', {
-                    key: 'Enter',
-                    code: 'Enter',
-                    keyCode: 13,
-                    bubbles: true,
-                    cancelable: true,
-                }));
+        if (!match) {
+            // Try finding options from the entire document as fallback
+            const allOptions = document.querySelectorAll('[role="option"]');
+            match = findMatchingOption(Array.from(allOptions), value);
+            // console.log('fallback match found:', match);
+        }
+
+        if (!match) {
+            // console.log('No match found, trying type approach...');
+            typeAndSelect(field, value, indicator, onToast);
+            return;
+        }
+
+        (match as HTMLElement).scrollIntoView({ block: 'nearest' });
+        (match as HTMLElement).click();
+
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+        field.dispatchEvent(new Event('change', { bubbles: true }));
+
+        setTimeout(() => {
+            const singleValue = selectContainer.querySelector('.select__single-value');
+            if (singleValue) {
+                // console.log('Value successfully set:', singleValue.textContent);
                 clearSavedField(indicator);
                 onToast('Field filled!', 'success');
             } else {
-                console.log('[fill] no match after filtering');
-                navigator.clipboard.writeText(value)
-                    .then(() => onToast('No match found — copied to clipboard!', 'info'))
-                    .catch(() => onToast('No matching option found', 'error'));
-                field.blur();
+                // console.log('Value not set, trying alternative...');
+                forceSetReactValue(field, value);
+
+                setTimeout(() => {
+                    const singleValueRetry = selectContainer.querySelector('.select__single-value');
+                    if (singleValueRetry) {
+                        clearSavedField(indicator);
+                        onToast('Field filled!', 'success');
+                    } else {
+                        onToast('Failed to set value', 'error');
+                    }
+                }, 100);
             }
-        } else {
-            console.log('[fill] no listbox appeared after typing');
-            onToast('Dropdown did not open', 'error');
+        }, 100);
+
+    }, 500);
+};
+
+const findMatchingOption = (options: Element[], value: string): Element | null => {
+    const searchValue = value.toLowerCase().trim();
+
+    let match = options.find(option => {
+        const text = option.textContent?.trim().toLowerCase() || '';
+        return text === searchValue;
+    });
+    if (match) return match;
+
+    match = options.find(option => {
+        const text = option.textContent?.trim().toLowerCase() || '';
+        return text.startsWith(searchValue);
+    });
+    if (match) return match;
+
+    match = options.find(option => {
+        const text = option.textContent?.trim().toLowerCase() || '';
+        return text.includes(searchValue);
+    });
+    if (match) return match;
+
+    const searchWords = searchValue.split(' ');
+    match = options.find(option => {
+        const text = option.textContent?.trim().toLowerCase() || '';
+        return searchWords.every(word => text.includes(word));
+    });
+
+    return match || null;
+};
+
+const typeAndSelect = (
+    field: HTMLInputElement,
+    value: string,
+    indicator: Element | null,
+    onToast: (msg: string, type: 'success' | 'error' | 'info') => void
+): void => {
+    field.focus();
+
+    field.value = '';
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+
+    let index = 0;
+    const typeNextChar = () => {
+        field.focus();
+
+        if (index >= value.length) {
+            setTimeout(() => {
+                field.focus();
+
+                const selected = document.querySelector(
+                    '[role="option"][aria-selected="true"], ' +
+                    '.select__option--is-focused, ' +
+                    '.select__option--is-selected'
+                );
+
+                if (selected) {
+                    (selected as HTMLElement).click();
+                    setTimeout(() => {
+                        field.dispatchEvent(new Event('input', { bubbles: true }));
+                        field.dispatchEvent(new Event('change', { bubbles: true }));
+
+                        const selectContainer = field.closest('.select');
+                        if (selectContainer) {
+                            const singleValue = selectContainer.querySelector('.select__single-value');
+                            if (singleValue) {
+                                clearSavedField(indicator);
+                                onToast('Field filled!', 'success');
+                                return;
+                            }
+                        }
+
+                        field.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+                        clearSavedField(indicator);
+                        onToast('Field filled!', 'success');
+                    }, 50);
+                } else {
+                    field.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+                    setTimeout(() => {
+                        if (field.value) {
+                            clearSavedField(indicator);
+                            onToast('Field filled!', 'success');
+                        } else {
+                            navigator.clipboard.writeText(value)
+                                .then(() => onToast('No match — copied to clipboard!', 'info'))
+                                .catch(() => onToast('No match found', 'error'));
+                        }
+                    }, 100);
+                }
+            }, 300);
+            return;
         }
 
-        resolved = true;
-    }, 300);
+        const char = value[index];
+        field.value = field.value + char;
+        field.dispatchEvent(new Event('input', { bubbles: true }));
 
-    setTimeout(() => {
-        if (!resolved) {
-            console.log('[fill] timeout — nothing happened');
-            onToast('Dropdown did not respond', 'error');
+        index++;
+        setTimeout(typeNextChar, 80);
+    };
+
+    typeNextChar();
+};
+
+// Force set React value through internal state
+const forceSetReactValue = (field: HTMLInputElement, value: string): void => {
+    const key = Object.keys(field).find(key =>
+        key.startsWith('__reactFiber$') || key.startsWith('__reactInternalInstance$')
+    );
+
+    if (key) {
+        const fiber = (field as any)[key];
+        let node = fiber;
+
+        while (node) {
+            if (node.stateNode && node.memoizedProps) {
+                if (node.memoizedProps.onChange) {
+                    // Create a synthetic event
+                    const syntheticEvent = {
+                        target: { value: value },
+                        currentTarget: { value: value },
+                    };
+                    node.memoizedProps.onChange(syntheticEvent);
+                    break;
+                }
+
+                // Look for onSelect handler (AsyncPaginate)
+                if (node.memoizedProps.onSelect) {
+                    const option = { value: value, label: value };
+                    node.memoizedProps.onSelect(option);
+                    break;
+                }
+            }
+            node = node.return;
         }
-    }, 3000);
+    }
+
+    // Fallback: native setter
+    const nativeSetter = Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        'value'
+    )?.set;
+
+    if (nativeSetter) {
+        nativeSetter.call(field, value);
+    } else {
+        field.value = value;
+    }
+
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+    field.dispatchEvent(new Event('change', { bubbles: true }));
 };
