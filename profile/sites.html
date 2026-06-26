@@ -1,0 +1,36 @@
+<ff-header>
+    <span>Sites</span>
+    <button class="backbtn">Back</button>
+</ff-header>
+
+<div class="card sites-card">
+
+    <div class="form-subheader">
+        Default Sites
+    </div>
+
+    <div class="sites-divider"></div>
+
+    <div class="sites-list" id="default-site-list"></div>
+
+    <div class="form-subheader">
+        Custom Sites
+    </div>
+
+    <div class="sites-divider"></div>
+
+    <div class="sites-list" id="custom-site-list"></div>
+
+    <div class="sites-add">
+        <input type="text" id="site-input" placeholder="example.com">
+        <button class="add-btn" type="button" id="add-site-btn">Add</button>
+    </div>
+</div>
+
+<template id="site-template">
+    <div class="site-row" data-item>
+        <span class="site-name"></span>
+        <button type="button" class="remove-btn remove-item">Remove</button>
+    </div>
+</template>
+
